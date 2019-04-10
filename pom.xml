@@ -535,7 +535,7 @@
                         <driver>org.h2.Driver</driver>
                         <url>jdbc:h2:file:${project.build.directory}/h2db/db/entandotokenplugin</url>
                         <defaultSchemaName></defaultSchemaName>
-                        <username>entandoTokenPlugin</username>
+                        <userId>entandoTokenPlugin</userId>
                         <password></password>
                         <referenceUrl>hibernate:spring:org.entando.plugin.token.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                         <verbose>true</verbose>

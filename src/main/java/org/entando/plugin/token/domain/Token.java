@@ -1,7 +1,6 @@
 package org.entando.plugin.token.domain;
 
 
-import org.entando.plugin.token.config.ApplicationProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -13,8 +12,6 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import org.entando.plugin.token.domain.enumeration.TokenType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * A Token.
@@ -31,7 +28,7 @@ public class Token implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min=16, max=16)
+    @Size(min = 8)
     @Column(name = "jhi_value", nullable = false, unique = true)
     private String value;
 
@@ -40,12 +37,12 @@ public class Token implements Serializable {
     @Column(name = "jhi_type", nullable = false)
     private TokenType type;
 
-    @NotNull
-    @Column(name = "username", nullable = false)
-    private String username;
-
     @Column(name = "expiration_time")
     private ZonedDateTime expirationTime;
+
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    private String userId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -82,19 +79,6 @@ public class Token implements Serializable {
         this.type = type;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public Token username(String username) {
-        this.username = username;
-        return this;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public ZonedDateTime getExpirationTime() {
         return expirationTime;
     }
@@ -104,13 +88,21 @@ public class Token implements Serializable {
         return this;
     }
 
-    public boolean hasExpirationTime() {
-        return null != this.expirationTime;
-    }
-
-
     public void setExpirationTime(ZonedDateTime expirationTime) {
         this.expirationTime = expirationTime;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public Token userId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -140,8 +132,8 @@ public class Token implements Serializable {
             "id=" + getId() +
             ", value='" + getValue() + "'" +
             ", type='" + getType() + "'" +
-            ", username='" + getUsername() + "'" +
             ", expirationTime='" + getExpirationTime() + "'" +
+            ", userId='" + getUserId() + "'" +
             "}";
     }
 }
