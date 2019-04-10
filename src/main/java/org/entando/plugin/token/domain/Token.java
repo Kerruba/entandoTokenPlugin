@@ -28,7 +28,7 @@ public class Token implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 8)
+    @Size(min=16, max=16)
     @Column(name = "jhi_value", nullable = false, unique = true)
     private String value;
 
