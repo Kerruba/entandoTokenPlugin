@@ -1,6 +1,7 @@
 package org.entando.plugin.token.domain;
 
 
+import org.entando.plugin.token.config.ApplicationProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -12,6 +13,8 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import org.entando.plugin.token.domain.enumeration.TokenType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * A Token.
@@ -43,12 +46,6 @@ public class Token implements Serializable {
 
     @Column(name = "expiration_time")
     private ZonedDateTime expirationTime;
-
-    @PrePersist
-    void onCreate() {
-        if (this.expirationTime == null)
-            this.setExpirationTime(ZonedDateTime.now().plusDays(6));
-    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -106,6 +103,11 @@ public class Token implements Serializable {
         this.expirationTime = expirationTime;
         return this;
     }
+
+    public boolean hasExpirationTime() {
+        return null != this.expirationTime;
+    }
+
 
     public void setExpirationTime(ZonedDateTime expirationTime) {
         this.expirationTime = expirationTime;
