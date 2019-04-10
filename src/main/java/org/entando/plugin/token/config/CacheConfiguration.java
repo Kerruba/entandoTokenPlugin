@@ -33,6 +33,7 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
+            cm.createCache(org.entando.plugin.token.domain.Token.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -106,7 +106,7 @@ spring:
     mode: HTML
   data:
     rest:
-      base-path: api
+      base-path: /api
 
 server:
   servlet:
