@@ -19,13 +19,17 @@ public class TokenEventHandler {
 
     @HandleBeforeCreate
     public void handleTokenCreate(Token token) {
-       if (!token.hasExpirationTime())  {
+       if (hasNoExpirationTime(token))  {
            token.setExpirationTime(getDefaultExpirationDate());
        }
     }
 
     private ZonedDateTime getDefaultExpirationDate() {
         return ZonedDateTime.now().plusHours(this.applicationProperties.getTokenExpirationInHours());
+    }
+
+    private boolean hasNoExpirationTime(Token token){
+        return null == token.getExpirationTime();
     }
 
 }
